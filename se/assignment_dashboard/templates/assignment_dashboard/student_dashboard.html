@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 {% load staticfiles %}
+{% load tz %}
+{{ value|localtime }}
+{% timezone "Asia/Calcutta" %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -92,13 +95,15 @@ margin-left: 0;
                         {% endif %}
                       {% for problem in problem_nsub %}
                       <div class="card card1" style="display:block; margin: auto; margin-top:10px; border: 1px solid #00BCD4; overflow: visible; " onclick="details(this);">
-                        <button class="btn btn-solve" style="float: right; margin: 30px 48px 0px 0px;">Solve</button>
+                          {% now "Y-m-d" as current_date %}
+                          {% now "H:i" as current_time %}
+                        <button class="btn btn-solve" style="float: right; margin: 30px 48px 0px 0px;" {% if problem.endDate|date:"Y-m-d" < current_date or problem.startDate|date:"Y-m-d" > current_date %} disabled {% elif problem.endDate|date:"Y-m-d" == current_date and problem.endTime|date:"H:i" < current_time %} disabled {% else %} {% if problem.startDate|date:"Y-m-d" == current_date and problem.startTime|date:"H:i" > current_time %} disabled {% endif %} {% endif %} >Solve  </button>
                         <h2 style="color:#00BCD4; margin-left:24px; display:flex-inline;">{{ problem.Name }}</h2>
-                        <h6 style="color:#00BCD4; margin-left:24px;"><i>Submission Date: {{ problem.endDate }} 00:00</i></h6>
+                        <h6 style="color:#00BCD4; margin-left:24px;"><i>Submission Date: {{ problem.endDate }} {{ problem.endTime }}</i></h6>
                         <div style="color:#00BCD4; margin-left:24px; display: none;">
                           <h5 style="color:#00BCD4;">Course: {{ problem.Course.Name }}</h5>
                           <h5 style="color:#00BCD4;">Language Available: {{ problem.Course.Name }}</h5>
-                          <h5 style="color:#00BCD4;">Start date: {{ problem.startDate }} 00:00</h5>
+                          <h5 style="color:#00BCD4;">Start date: {{ problem.startDate }} {{ problem.startTime }}</h5>
                           <h5 style="color:#00BCD4;">Max Attempts: {{ problem.maxAttempts }}</h5>
                           <h5 style="color:#00BCD4;">Max Marks: {{ problem.maxMarks }}</h5>
 
@@ -208,3 +213,4 @@ margin-left: 0;
 
 </body>
 </html>
+{% endtimezone %}

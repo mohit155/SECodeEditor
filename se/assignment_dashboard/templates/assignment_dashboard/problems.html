@@ -104,7 +104,7 @@ margin-left: 0;
                             <h5 style="color:#00BCD4; display:inline-block; overflow: visible; vertical-align: middle; margin:auto; margin-left:24px; margin-top:10px; float: right;">Max Marks: {{ problem.maxMarks }}</h5><br>
                             <h5 style="color:#00BCD4; display:inline-block; overflow: visible; vertical-align: middle; margin:auto; margin-left:24px; margin-top:10px;">Faculty: {{ problem.Faculty }}</h5>
                             <h5 style="color:#00BCD4; display:inline-block; overflow: visible; vertical-align: middle; margin:auto; margin-left:24px; float:right; margin-top:10px;">Test case file:{{ problem.test_case_file }}</h5><br>
-                            <div style="border: 1px solid #00BCD4; border-radius:2px; margin-left:19px;  margin-top:10px; margin-bottom:10px; padding: 5px;" ><h5 style="color:#00BCD4; display:inline-block; overflow: visible; vertical-align: middle; margin:auto;">Problem Statement:<br> {{ problem.ProblemStatement }} </h5></div>
+                            <div style="border: 1px solid #00BCD4; border-radius:2px; margin-left:19px;  margin-top:10px; margin-bottom:10px; padding: 5px;" ><h5 style="color:#00BCD4; display:inline-block; overflow: visible; vertical-align: middle; margin:auto;">Problem Statement:<br> {{ problem.ProblemStatement|linebreaksbr }} </h5></div>
                         </div>
                         {% endfor %}
                         <div style="padding-top:-10px; :margin:10px; text-align:center;">

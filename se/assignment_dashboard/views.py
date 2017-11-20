@@ -57,6 +57,7 @@ def index_student(request):
         if len(solution) == 0:
             problem_nsub = problem_student
 
+
         context = {
             'problems': problem_student,
             'problem_sub': problem_sub,
@@ -64,6 +65,7 @@ def index_student(request):
             'student_data': student_data,
             'section': section,
             'problem_sub_sol': zip(problem_sub, solution_attempts),
+
         }
         return render(request, 'assignment_dashboard/student_dashboard.html', context)
     else:
